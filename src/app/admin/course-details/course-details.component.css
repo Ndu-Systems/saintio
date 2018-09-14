@@ -1,0 +1,9 @@
+.panel-default{
+
+    width: 100%;
+    /* background-color: white; */
+
+}
+.addcourse-row, .btn-group{
+    width: 100%;
+}

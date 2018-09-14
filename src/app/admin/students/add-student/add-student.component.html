@@ -1,0 +1,106 @@
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+    <app-nav-user></app-nav-user>
+
+  </nav>
+  <!-- Page Content Holder -->
+  <div id="content">
+    <app-toggle-user-menu></app-toggle-user-menu>
+    <p-growl [(value)]="msgs"></p-growl>
+
+    <h2>Add Saint
+
+      <a routerLink="/saints-list">
+
+        <button type="button" class="btn btn-info">View Saints</button>
+      </a>
+
+    </h2>
+    <hr/>
+    <div class="col-md-4"></div>
+    <div class="col-sm-12 col-md-8">
+      <br>
+      <br>
+      <div>
+          <div class="form-group">
+              <label for="email">
+                <b>TITLE</b>:</label>
+              <select type="text" [(ngModel)]="title" class="form-control">
+                <option>Mr</option>
+                <option>Mrs</option>
+                <option>Dr</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="email">
+                  <b>AGE GROUP</b>:</label>
+                <select type="text" [(ngModel)]="agegroup" class="form-control">
+                  <option>Sunday School</option>
+                  <option>Youth</option>
+                  <option>Aldult</option>
+                </select>
+              </div>
+        <div class="form-group">
+          <label for="email">
+            <b>NAME</b>:</label>
+          <input type="text" [(ngModel)]="name" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="email">
+            <b>SURNAME</b>:</label>
+          <input type="text" [(ngModel)]="surname" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="email">
+            <b>EMAIL</b>:</label>
+          <input type="email" [(ngModel)]="email" class="form-control" id="email">
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <b>acuptation</b>:</label>
+          <input type="text" [(ngModel)]="acuptation" class="form-control" id="email">
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <b>CELL</b>:</label>
+          <input type="text" [(ngModel)]="cell" class="form-control" id="email">
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <b>ADDRESS</b>:</label>
+          <textarea  [(ngModel)]="address" class="form-control" > </textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <b>Merital Status</b>:</label>
+          <input type="text" [(ngModel)]="meritalStatus" class="form-control" id="email">
+        </div>
+     
+        <div class="form-group">
+          <label for="email">
+            <b>date Joined</b>:</label>
+          <input type="date" [(ngModel)]="dateJoined" class="form-control" id="email">
+        </div>
+     
+        <div class="form-group">
+          <button type="button" (click)="AddStudent(course)" class="btn btn-info">Add Saint</button>
+        </div>
+        <div class="form-group">
+          <p class="error">
+            {{message}}
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+</script>

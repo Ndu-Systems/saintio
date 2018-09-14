@@ -1,0 +1,85 @@
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+    <app-nav-user></app-nav-user>
+
+  </nav>
+
+  <!-- Page Content Holder -->
+  <div id="content">
+      <app-toggle-user-menu></app-toggle-user-menu>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <h2>{{courseObject.tittle}} </h2>
+        <br> Tittle: {{courseObject.tittle}}
+        <br>
+        <br> Description:{{courseObject.description}}
+        <br>
+        <br> Department:{{courseObject.department}}
+        <br>
+        <br> Credits:{{courseObject.credits}}
+        <br>
+        <br> Status:{{courseObject.status}}
+        <br>
+        <br>
+      </div>
+      <div class="col-md-8">
+        <h2>{{courseObject.tittle}} - Subjects </h2>
+        <br>    
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                  <div class="addcourse-row">
+                      <h2 for="email"><b> Add Subject to Course</b>:</h2>
+
+                      <div class="btn-group">
+                          <select type="text" [(ngModel)]="sub"   class="form-control" >
+                              <option *ngFor="let sub of Allsubjects" [value]="sub.id">{{sub.tittle}}</option>
+                            </select>
+                            <button type="button" (click)="addSubjectToAList(sub)" class="btn btn-info">+</button>
+
+                        </div>
+                      <br>
+                      <div class="form-group">
+                      
+                     </div>         
+                     <div class="form-group"  style="width: 15%; float: left">
+                     </div>
+                     <div>
+                       <p class="error">{{error}}</p>       
+                    
+               </div>        </div>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>TITTLE</th>
+                      <th>CODE</th>
+                      <th>DESCRIPTION</th>
+                      <th>CREDITS</th>
+                      <th>STATUS</th>
+                      <th>ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let subject of subjects">
+                      <td>{{subject.tittle}}</td>
+                      <td>{{subject.code}}</td>
+                      <td>{{subject.description}}</td>
+                      <td>{{subject.credits}}</td>
+                      <td>{{subject.status}}</td>
+                      <td>
+                        <button type="button" (click)="Details(course)" class="btn btn-info">More</button>
+                      </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>        
+
+        </div>
+       
+
+      </div>
+    </div>
+</div>

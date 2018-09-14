@@ -1,0 +1,40 @@
+    <div class="sidebar-header">
+        <h3>Admin Dash</h3>
+    </div>
+   
+    <ul class="list-unstyled components">
+      <li>
+          <a routerLink="/user-dashboard">Home View</a>
+      </li>
+      <li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false"><li class="fa fa-user"></li> My Account</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li><a routerLink="/admin-account"><li class="fa fa-id-badge"></li> My Account</a></li>
+                <li><a routerLink="/admin-change-password"><li class="fa fa-sync"></li> Change Your Password</a></li>
+            </ul>
+        </li>      
+        <li>
+            <a routerLink="/saints-list">Saints</a>
+        </li>
+        <li>
+            <a routerLink="/register">Register</a>
+        </li>
+        <li>
+            <a routerLink="/asserts"> Asserts</a>
+        </li>
+         <li>
+            <a routerLink="/all-subjects">Events</a>
+        </li>
+         <li>
+            <a routerLink="/all-lectures">Offering</a>
+        </li>
+         <li>
+            <a routerLink="/all-lectures">Notes</a>
+        </li>
+         <li>
+            <a routerLink="/accounting-reports">Accounting</a>
+        </li>
+        <li>
+            <app-logout></app-logout>
+        </li>
+    </ul>
