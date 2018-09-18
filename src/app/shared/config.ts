@@ -1,6 +1,6 @@
-export const IS_LOCAL = true;
-let api ="http://demo.ndu-systems.net/api"
-let web ="http://demo.ndu-systems.net"
+export const IS_LOCAL = false;
+let api ="http://saintio.ndu-systems.net/api"
+let web ="http://saintio.ndu-systems.net"
 if(IS_LOCAL){
     api='http://localhost/saintio/api';
     web='http://localhost:4200';

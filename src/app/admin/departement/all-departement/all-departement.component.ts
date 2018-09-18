@@ -11,6 +11,7 @@ import { IRegister } from "../../students/model/Saint";
 export class AllDepartementComponent implements OnInit {
   registerLS$: Observable<Array<IRegister>>;
   status:string = '';
+  date:string = '';
   constructor(private selectService: SelectService) {
     this.registerLS$ = this.selectService.select(`user inner join register on user.id = register.userID where register.status <> 'new' order by register.status`);
   }

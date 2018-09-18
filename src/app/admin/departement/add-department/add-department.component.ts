@@ -5,7 +5,6 @@ import { StopLoadingScreen, LoadScreen } from '../../../shared/loading/load';
 import { Observable } from 'rxjs/Observable';
 import { SelectService } from '../../../shared/select.service';
 import { Message } from 'primeng/components/common/message';
-import { stat } from 'fs';
 
 @Component({
   selector: 'app-add-department',
