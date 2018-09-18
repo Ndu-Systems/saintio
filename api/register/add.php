@@ -27,7 +27,7 @@ if (isset($data->userID)) {
         $result = $conn->prepare("
     UPDATE register SET
     status=?,
-    reason=?,
+    reason=?
     WHERE userID = ? AND date = ?
 ");
         if ($result->execute(array($status, $reason, $userID, $date))) {

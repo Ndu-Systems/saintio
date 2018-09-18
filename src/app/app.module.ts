@@ -31,7 +31,8 @@ import { StudentCourseSubjectService } from "./admin/students/student-course-sub
 import { AdminDashService } from "./admin/user-dashboard/admin-dash.service";
 import {ChartModule} from 'primeng/chart';
 import {GrowlModule} from 'primeng/growl';
-import {SelectButtonModule} from 'primeng/selectbutton';
+import {DialogModule} from 'primeng/dialog';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     GetSubjectPipe,
     LogoutComponent
 ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,ChartModule,SelectButtonModule,GrowlModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule,FormsModule, HttpClientModule,ChartModule,DialogModule,GrowlModule],
   providers: [
     RegisterService,
     StudentCourseSubjectService,

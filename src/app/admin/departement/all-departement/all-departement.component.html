@@ -18,6 +18,18 @@
             <button type="button"  class="btn btn-info">Mark register</button>
          </a>
       </h2> <br>
+      <div>
+        <a>
+          <input type="date" class="btn btn-info" [(ngModel)]="date"/>
+        </a>
+        <a>
+          <select  class="btn btn-info" [(ngModel)]="status">
+            <option value="" selected>Any Status</option>
+            <option value="p">Present</option>
+            <option value="a">Absent</option>
+            </select>
+        </a>
+      </div>
         <div class="row" *ngIf="registerLS$ | async as departements; else loading">
          
           <div class="col-sm-12">
@@ -31,8 +43,8 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let departement of departements">
-                  <td>{{departement.userID}}</td>
+                <tr *ngFor="let departement of departements| filterByDate:date:status">
+                  <td>{{departement.title}} {{departement.name}} {{departement.surname}}</td>
                   <td>
                       <span class="badge {{departement.status}}">{{departement.status}}</span>
                     {{departement.date}}

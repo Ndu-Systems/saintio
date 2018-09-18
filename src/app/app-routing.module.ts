@@ -52,6 +52,7 @@ import { IncomeComponent } from './admin/accounting/income/income.component';
 import { ExpenditureComponent } from './admin/accounting/expenditures/expenditure/expenditure.component';
 import { StudentListComponent } from './admin/students/student-list/student-list.component';
 import { FilterPipe } from './admin/departement/pipes/filter.pipe';
+import { FilterByDatePipe } from './admin/departement/pipes/filterByDate.pipe';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -145,6 +146,7 @@ export const routingComponents = [
   StudentDashboardComponent, 
   SearchUserPipe,
   FilterPipe,
+  FilterByDatePipe,
   StudentNavComponent,FinacailReportsComponent,IncomeComponent, ExpenditureComponent
 ];
 

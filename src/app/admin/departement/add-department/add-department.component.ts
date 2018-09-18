@@ -5,6 +5,7 @@ import { StopLoadingScreen, LoadScreen } from '../../../shared/loading/load';
 import { Observable } from 'rxjs/Observable';
 import { SelectService } from '../../../shared/select.service';
 import { Message } from 'primeng/components/common/message';
+import { stat } from 'fs';
 
 @Component({
   selector: 'app-add-department',
@@ -13,6 +14,7 @@ import { Message } from 'primeng/components/common/message';
 })
 export class AddDepartmentComponent implements OnInit {
   msgs: Message[] = [];
+  display: boolean = false;
 
   status: string = "active";
   error: string;
@@ -21,9 +23,9 @@ export class AddDepartmentComponent implements OnInit {
   date: string;
   reason: string;
   message: string;
+  saintID: number;
   constructor(private selectService: SelectService, private router: Router, private addService: AddService) {
    this.getSaints();
-    this.reason = 'na';
   }
 getSaints(){
   this.students$ = this.selectService.select2(`SELECT user.id, user.name, user.role,user.title, user.surname, register.status, register.date FROM user LEFT JOIN register on user.id = register.userID
@@ -41,6 +43,8 @@ getSaints(){
   }
   markReg(saintID: number, status) {
     this.message = undefined;
+    this.saintID = saintID;
+    this.status = status;
     let valid: boolean = false;
     if (!this.date) {
       this.message = "Select Date";
@@ -51,39 +55,31 @@ getSaints(){
     if (status === 'p') {
       valid = true;
     }
+    if(status==='a'){
+      this.display = true;
+      valid = false;
+
+    }
     if (valid) {
-      let data = {
-        date: this.date,
-        userID: saintID,
-        reason: this.reason,
-        status: status
-      }
-      LoadScreen();
-      this.addService.add(data, "register/add")
-        .subscribe((response) => {
-          StopLoadingScreen();
-          this.getSaints();
-          this.router.navigate(['/mark-register']);
-        });
-
-
+   this.save();
     }
   }
-  Save() {
-    if (this.name) {
-      let data = {
-        name: this.name,
-        status: this.status
-      }
-      LoadScreen();
-      this.addService.add(data, "register/add")
-        .subscribe((response) => {
-          StopLoadingScreen();
-          alert(response);
-          this.router.navigate(['/register']);
-        });
-    } else {
-      this.error = "Enter department name";
+  save() {
+    let data = {
+      date: this.date,
+      userID: Number(this.saintID),
+      reason: this.reason?this.reason:'na',
+      status: this.status
     }
+    LoadScreen();
+    this.addService.add(data, "register/add")
+      .subscribe((response) => {
+        this.display = false;
+        this.reason = undefined;
+        StopLoadingScreen();
+        this.getSaints();
+        this.router.navigate(['/mark-register']);
+      });
+
   }
 }
