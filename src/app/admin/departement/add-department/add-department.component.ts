@@ -2,6 +2,9 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AddService } from '../../../shared/services/add.service';
 import { StopLoadingScreen, LoadScreen } from '../../../shared/loading/load';
+import { Observable } from 'rxjs/Observable';
+import { SelectService } from '../../../shared/select.service';
+import { Message } from 'primeng/components/common/message';
 
 @Component({
   selector: 'app-add-department',
@@ -9,28 +12,77 @@ import { StopLoadingScreen, LoadScreen } from '../../../shared/loading/load';
   styleUrls: ['./add-department.component.css']
 })
 export class AddDepartmentComponent implements OnInit {
+  msgs: Message[] = [];
 
-  status: string="active";
+  status: string = "active";
   error: string;
   name: any;
-  constructor(private addService:AddService,private router:Router) { }
-
+  students$: Observable<any[]>;
+  date: string;
+  reason: string;
+  message: string;
+  constructor(private selectService: SelectService, private router: Router, private addService: AddService) {
+   this.getSaints();
+    this.reason = 'na';
+  }
+getSaints(){
+  this.students$ = this.selectService.select2(`SELECT user.id, user.name, user.role,user.title, user.surname, register.status, register.date FROM user LEFT JOIN register on user.id = register.userID
+  `);
+}
   ngOnInit() {
   }
+  showSuccess() {
+    this.msgs = [];
+    this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Saint added succesfuly' });
+  }
+  showWarning(text) {
+    this.msgs = [];
+    this.msgs.push({ severity: 'error', summary: 'Error', detail: text });
+  }
+  markReg(saintID: number, status) {
+    this.message = undefined;
+    let valid: boolean = false;
+    if (!this.date) {
+      this.message = "Select Date";
+      this.showWarning(this.message)
+      valid = false;
+      return valid;
+    }
+    if (status === 'p') {
+      valid = true;
+    }
+    if (valid) {
+      let data = {
+        date: this.date,
+        userID: saintID,
+        reason: this.reason,
+        status: status
+      }
+      LoadScreen();
+      this.addService.add(data, "register/add")
+        .subscribe((response) => {
+          StopLoadingScreen();
+          this.getSaints();
+          this.router.navigate(['/mark-register']);
+        });
+
+
+    }
+  }
   Save() {
-    if(this.name){
-let data = {
-  name:this.name,
-  status: this.status
-}
-LoadScreen();
-this.addService.add(data,"department/add")
-.subscribe((response)=>{
-  StopLoadingScreen();
-alert(response);
-this.router.navigate(['/all-departement']);
-});
-    }else{
+    if (this.name) {
+      let data = {
+        name: this.name,
+        status: this.status
+      }
+      LoadScreen();
+      this.addService.add(data, "register/add")
+        .subscribe((response) => {
+          StopLoadingScreen();
+          alert(response);
+          this.router.navigate(['/register']);
+        });
+    } else {
       this.error = "Enter department name";
     }
   }

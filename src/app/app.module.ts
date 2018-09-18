@@ -27,11 +27,11 @@ import { GetSubjectPipe } from './lecture/test-section/test-list/get-subject.pip
 import { TestCentreService } from "./lecture/test-section/add-test/test-centre.service";
 import { ForgotPasswordService } from "./forgot-password/forgot-password.service";
 import { TokenService } from "./shared/token.service";
-import { AddSubjectForStudentService } from "./admin/students/add-subject-for-student/add-subject-for-student.service";
 import { StudentCourseSubjectService } from "./admin/students/student-course-subject/student-course-subject.service";
 import { AdminDashService } from "./admin/user-dashboard/admin-dash.service";
 import {ChartModule} from 'primeng/chart';
 import {GrowlModule} from 'primeng/growl';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 
 @NgModule({
@@ -44,13 +44,12 @@ import {GrowlModule} from 'primeng/growl';
     GetSubjectPipe,
     LogoutComponent
 ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,ChartModule,GrowlModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule,ChartModule,SelectButtonModule,GrowlModule],
   providers: [
     RegisterService,
     StudentCourseSubjectService,
     LoginService,
     EmailService,
-    AddSubjectForStudentService,
     UserDataService,
     ResetUserService,
     AddService,

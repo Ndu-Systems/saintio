@@ -47,11 +47,11 @@ import { AddTestComponent } from './lecture/test-section/add-test/add-test.compo
 import { ForgotPasswordSuccessComponent } from './forgot-password/forgot-password-success/forgot-password-success.component';
 import { TestStudentsComponent } from './lecture/test-section/test-students/test-students.component';
 import { LoadingComponent } from './shared/loading/loading/loading.component';
-import { AddSubjectForStudentComponent } from './admin/students/add-subject-for-student/add-subject-for-student.component';
 import { StudentCourseSubjectComponent } from './admin/students/student-course-subject/student-course-subject.component';
 import { IncomeComponent } from './admin/accounting/income/income.component';
 import { ExpenditureComponent } from './admin/accounting/expenditures/expenditure/expenditure.component';
 import { StudentListComponent } from './admin/students/student-list/student-list.component';
+import { FilterPipe } from './admin/departement/pipes/filter.pipe';
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -76,7 +76,6 @@ const routes: Routes = [
   { path: "all-subjects", component: AllSubjectsComponent },
   { path: "saint/:id", component: StudentCourseSubjectComponent },
   { path: "lecture-course-subject/:id", component: LectureCourseSubjectComponent },
-  { path: "add-subject-for-student/:id", component: AddSubjectForStudentComponent },
   { path: "add-subject-for-lecture", component: AddSubjectForLectureComponent },
   { path: "course/:id", component: CourseDetailsComponent },
   { path: "lecture-subjects/:id", component: LectureSubjectsComponent}, 
@@ -117,7 +116,6 @@ export const routingComponents = [
   AddDepartmentComponent,
   CourseDetailsComponent,
   StudentCourseSubjectComponent,
-  AddSubjectForStudentComponent,
   ToggleUserMenuComponent,
   AddLectureComponent,
   AllAddLecturesComponent,
@@ -146,6 +144,7 @@ export const routingComponents = [
   AddTestComponent ,
   StudentDashboardComponent, 
   SearchUserPipe,
+  FilterPipe,
   StudentNavComponent,FinacailReportsComponent,IncomeComponent, ExpenditureComponent
 ];
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 14, 2018 at 02:04 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Host: localhost
+-- Generation Time: Sep 18, 2018 at 09:17 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 7.0.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -131,12 +131,31 @@ CREATE TABLE `notes` (
 
 CREATE TABLE `register` (
   `id` int(10) NOT NULL,
-  `date` datetime NOT NULL,
+  `date` varchar(30) NOT NULL,
   `status` varchar(10) NOT NULL,
   `userID` int(10) NOT NULL,
   `reason` text NOT NULL,
   `createdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `register`
+--
+
+INSERT INTO `register` (`id`, `date`, `status`, `userID`, `reason`, `createdate`) VALUES
+(14, 'new', 'new', 15, 'new', '2018-09-17 13:46:03'),
+(15, 'new', 'new', 16, 'new', '2018-09-17 13:46:58'),
+(16, 'new', 'new', 17, 'new', '2018-09-17 13:47:51'),
+(17, 'new', 'new', 18, 'new', '2018-09-17 13:48:34'),
+(18, '2018-09-02', 'p', 15, 'na', '2018-09-17 13:58:18'),
+(19, '2018-09-02', 'p', 16, 'na', '2018-09-17 13:58:55'),
+(20, '2018-09-02', 'p', 17, 'na', '2018-09-17 13:59:00'),
+(21, '2018-09-03', 'p', 15, 'na', '2018-09-18 09:06:59'),
+(22, '2018-09-03', 'p', 18, 'na', '2018-09-18 09:07:10'),
+(23, '2018-09-03', 'p', 16, 'na', '2018-09-18 09:09:17'),
+(24, '2018-09-03', 'p', 17, 'na', '2018-09-18 09:09:22'),
+(25, '2018-09-02', 'p', 18, 'na', '2018-09-18 09:10:29'),
+(26, '2018-09-06', 'p', 17, 'na', '2018-09-18 09:10:43');
 
 -- --------------------------------------------------------
 
@@ -170,12 +189,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `surname`, `email`, `cell`, `address`, `role`, `acuptation`, `dateJoined`, `createdate`, `status`, `modifiedDate`, `modifiledBy`, `password`, `title`, `agegroup`, `meritalStatus`) VALUES
 (2, 'User', '', 'user@saintio.com', '', '', 'admin', '', '2018-09-03 00:00:00', '2018-09-18 00:00:00', '', NULL, NULL, 'pass', '', '', ''),
-(3, 'xsdfg', 'xDSfcv', 'zsda@erfg', 'sadfg', 'zsdff', 'saint', 'zsadf', '0000-00-00 00:00:00', '2018-09-10 22:50:04', 'active', NULL, NULL, 'xDSfcv', 'Youth', 'Dr', 'w'),
-(4, 'Ntombi', 'Manyoni', 'queries@ndu-systems.net', '08454545', 'Ulundi', 'saint', 'Nurse', '0000-00-00 00:00:00', '2018-09-10 22:57:35', 'active', NULL, NULL, 'Manyoni', 'Mrs', 'Aldult', 'Maried'),
-(5, 'Nkosi', 'Mthembu', 'info@mail.com', '02988977', 'na', 'saint', 'Na', '0000-00-00 00:00:00', '2018-09-10 23:08:27', 'active', NULL, NULL, 'Mthembu', 'Mr', 'Sunday School', 'single'),
-(6, 'queries@ndu-systems.net', 'mrnnmthembu@gmail.com', 'mrnnmthembu@gmail.com', 'mrnnmthembu@gma', 'kmj', 'saint', 'mrnnmthembu@gmail.com', '0000-00-00 00:00:00', '2018-09-10 23:09:14', 'active', NULL, NULL, 'mrnnmthembu@gmail.com', 'Dr', 'Youth', '6'),
-(7, 'SADFgh', 'xSDFg', 'SDFg@efgb', 'fstyr', 'xsdfg', 'saint', 'xSDF', '2018-09-12', '2018-09-10 23:24:59', 'active', NULL, NULL, 'xSDFg', 'Dr', 'Sunday School', '43'),
-(8, 'sadaf', 'zsadf', 'xsda@wefsd', 'swerty', 'asadf', 'saint', 'sdfsd', '2018-09-19', '2018-09-13 21:41:08', 'active', NULL, NULL, 'zsadf', 'Mrs', 'Sunday School', '1');
+(15, 'Themba', 'Mthembu', 'themba@mail.com', '9021821083012', 'Test', 'saint', 'Test', '2018-09-13', '2018-09-17 13:46:03', 'active', NULL, NULL, 'Mthembu', 'Dr', 'Aldult', 'Single'),
+(16, 'Nelly', 'Ndlovu', 'nellynd@telkom.co.za', '07863627', 'TEST', 'saint', 'HR MANAGER', '2018-09-14', '2018-09-17 13:46:58', 'active', NULL, NULL, 'Ndlovu', 'Mrs', 'Aldult', 'Married'),
+(17, 'THUSO', 'NDLOVU', 'thusu@mail.com', '92812891', 'Test', 'saint', 'NA', '2018-09-06', '2018-09-17 13:47:51', 'active', NULL, NULL, 'NDLOVU', 'Mr', 'Youth', 'Single'),
+(18, 'Ndumiso', 'Mthembu', 'nlb2@mail.com', '0842672817', 'Test', 'saint', 'Software Dev', '2018-09-19', '2018-09-17 13:48:34', 'active', NULL, NULL, 'Mthembu', 'Mr', 'Youth', 'Single');
 
 --
 -- Indexes for dumped tables
@@ -285,13 +302,13 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

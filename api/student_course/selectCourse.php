@@ -5,100 +5,67 @@ header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 require "../conn.php";
 
-if (isset($_GET['studentID']) ){  
-$studentID =$_GET['studentID'];
-$rows = array();
+if (isset($_GET['studentID'])) {
+    $studentID = $_GET['studentID'];
+    $rows = array();
 
-$result = $conn->prepare("SELECT * FROM user WHERE id = ?");
-$result->execute(array(
-    $studentID 
-));
-if ($result->rowCount() > 0) {
-    while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-        $data                 = new Stu_Course_Subjects();
-        $data->id             = $row->id;
-        $data->name             = $row->name;
-        $data->surname             = $row->surname;
-		$data->getCourse($conn);
-		$data->GetSubjects($conn);
-        $rows[] = $data;
+    $result = $conn->prepare("SELECT * FROM user WHERE id = ?");
+    $result->execute(array(
+        $studentID,
+    ));
+    if ($result->rowCount() > 0) {
+        while ($row = $result->fetch(PDO::FETCH_OBJ)) {
+            $data = new Saint();
+            $data->id = $row->id;
+            $data->title = $row->title;
+            $data->name = $row->name;
+            $data->surname = $row->surname;
+            $data->email = $row->email;
+            $data->cell = $row->cell;
+            $data->address = $row->address;
+            $data->acuptation = $row->acuptation;
+            $data->dateJoined = $row->dateJoined;
+            $data->status = $row->status;
+            $data->agegroup = $row->agegroup;
+            $data->meritalStatus = $row->meritalStatus;
+
+            $data->getAttendance($conn);
+            $rows[] = $data;
+        }
     }
+
+    echo json_encode($rows);
 }
-echo json_encode($rows);
-}
-class Stu_Course_Subjects{
+class Saint
+{
     public $id;
+    public $title;
     public $name;
     public $surname;
-
-    public $course;
-    public $department;
-    public $credits;
+    public $email;
+    public $cell;
+    public $address;
+    public $acuptation;
+    public $dateJoined;
     public $status;
+    public $agegroup;
+    public $meritalStatus;
 
-    public $subjects;
-    function GetSubjects($conn){
-        $subjects = array();
-        $result = $conn->prepare("SELECT * FROM student_course_subject WHERE StudentId = ?");
-        $result->execute(array(
-            $this->id 
+    public $registerLS;
+
+    public function getAttendance($conn)
+    {
+
+        $course = $conn->prepare("SELECT * FROM register WHERE userID = ?");
+        $course->execute(array(
+            $this->id,
         ));
-        if ($result->rowCount() > 0) {
-            while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-                $Subject            = $row->Subject;
-                $course = $conn->prepare("SELECT * FROM subject WHERE id = ?");
-                $course->execute(array(
-                    $Subject
-                ));
-                if ($course->rowCount() > 0) {
-                    while ($course_row = $course->fetch(PDO::FETCH_OBJ)) {
-                        $subjects[] = $course_row;
-                    }
-                }
-            }
-        }
+        $results = $course->fetchAll(PDO::FETCH_ASSOC);
+        $this->registerLS = $results;
 
-        $this->subjects =$subjects;
     }
 
-    function getCourse($conn){
-        
-        $result = $conn->prepare("SELECT * FROM student_course WHERE studentID = ?");
-            $result->execute(array(
-                $this->id 
-            ));
-            if ($result->rowCount() > 0) {
-                while ($row = $result->fetch(PDO::FETCH_OBJ)) {
-                    $courseID            = $row->courseID;
-                    $course = $conn->prepare("SELECT * FROM course WHERE id = ?");
-                    $course->execute(array(
-                        $courseID
-                    ));
-                    if ($course->rowCount() > 0) {
-                        while ($course_row = $course->fetch(PDO::FETCH_OBJ)) {
-                            $this->course            = $course_row->tittle;
-                            $this->credits            = $course_row->credits;
-                            $this->status            = $course_row->status;
-                            $this->department            = $course_row->department;
-                        }
-                    }
-                }
-            }
-    }
+}
 
-  
-}
-/*
-$statement = $conn->prepare("
-    SELECT c.* FROM `student_course_subject` scs
-    inner join user st on st.id = scs.StudentId 
-    inner join course c on c.id = scs.courseID
-    inner join subject s  on s.id = scs.subject
-    WHERE st.id = ?
-");
-$statement->execute(array($studentID));
-    $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-    echo $json = json_encode($results);
-}
-*/
-?>
+
+

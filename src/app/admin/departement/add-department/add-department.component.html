@@ -1,45 +1,62 @@
-
 <div class="wrapper">
   <!-- Sidebar Holder -->
   <nav id="sidebar">
-      <app-nav-user></app-nav-user>
+    <app-nav-user></app-nav-user>
 
   </nav>
 
   <!-- Page Content Holder -->
   <div id="content">
-      <app-toggle-user-menu></app-toggle-user-menu>
+    <app-toggle-user-menu></app-toggle-user-menu>
 
+    <p-growl [(value)]="msgs"></p-growl>
 
-      <h2>Mark register
+    <h2>Mark register
 
-          <a routerLink="/register">
-            <button type="button"  class="btn btn-info">View  register</button>
-         </a>
-      </h2> <br>
-        <div class="row">
-         
-          <div class="col-sm-12">
-            <br>
-           <br>
-              <div class="form-group">
-                <label for="email"><b>DEPARTMENT NAME</b>:</label>
-                <input type="text"  [(ngModel)]="name"     class="form-control">
-              </div>
-
-             
-
-              <div class="form-group">
-                <button type="button" (click)="Save()" class="btn btn-info">SAVE</button>
-
-              </div>
-              <div>
-                <p class="error">{{error}}</p>
-              </div>
-
-             
+      <a routerLink="/register">
+        <button type="button" class="btn btn-info">View register</button>
+      </a>
+      <a>
+        <input type="date" class="btn btn-info" [(ngModel)]="date"/>
+      </a>
+    </h2> <br>
+    <div class="row" *ngIf="students$ | async as students; else loading">
+      <div class="col-sm-12">
+        <div class="search">
+          <div class="form-group">
+            <input type="text" [(ngModel)]="search" placeholder="Search....." class="form-control search-input" />
+          </div>
         </div>
-     </div>
-</div>
+        <div class="table-scroll">
 
+          <table class="table table-condensed">
+            <thead>
 
+              <tr>
+                <th>Saints</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of students | filterDates:date">
+                <td class=" {{student.status}}">{{student.title}} {{student.name}} {{student.surname}}</td>
+                <td>
+                  <button type="button" (click)="markReg(student.id,'p')" class="btn btn-info p-init">P</button>
+                  <button type="button" (click)="markReg(student.id,'a')" class="btn btn-info a-init">A</button>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <ng-template #loading>
+      <app-loading>
+
+      </app-loading>
+    </ng-template>
+  </div>

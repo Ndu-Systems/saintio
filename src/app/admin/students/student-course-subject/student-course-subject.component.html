@@ -6,7 +6,7 @@
   </nav>
 
   <!-- Page Content Holder -->
-  <div id="content" *ngIf="student$ | async as student; else loading">
+  <div id="content" *ngIf="saint$ | async as student; else loading">
 
     <app-toggle-user-menu></app-toggle-user-menu>
 
@@ -19,54 +19,57 @@
               <b>Name:</b>
             </td>
             <td>
-              {{ student[0].name}}
+              {{student[0].title}} {{ student[0].name}}  {{ student[0].surname}}
             </td>
           </tr>
           <tr>
             <td>
-              <b>Surname:</b>
+              <b>Email:</b>
             </td>
             <td>
-              {{ student[0].surname}}
+              {{ student[0].email}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Cell No.:</b>
+            </td>
+            <td>
+              {{ student[0].cell}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Adress:</b>
+            </td>
+            <td>
+              {{ student[0].address}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Age group:</b>
+            </td>
+            <td>
+              {{ student[0].agegroup}}
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Merital <br> Status:</b>
+            </td>
+            <td>
+              {{ student[0].meritalStatus}}
             </td>
           </tr>
         </table>
       </div>
 
-      <div class="col-sm-6">
-        <h2>Course Information</h2>
-        <table>
-          <tr>
-            <td>
-              <b>Course:</b>
-            </td>
-            <td>{{student[0].course}}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Department:</b>
-            </td>
-            <td>{{student[0].department}}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Credits:</b>
-            </td>
-            <td>{{student[0].credits}}</td>
-          </tr>
-          <tr>
-            <td>
-              <b>Status:</b>
-            </td>
-            <td>{{student[0].status}}</td>
-          </tr>
-        </table>
-
-      </div>
+    
     </div>
     <div class="row">
       <div class="col-md-12">
-        <h2>Course Subjects </h2>
+        <h2>Attendece History </h2>
         <br>
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -74,20 +77,19 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>TITLE</th>
-                    <th>CODE</th>
-                    <th>DESCRIPTION</th>
-                    <th>CREDITS</th>
-                    <th>STATUS</th>
+                    <th>DATE</th>
+                    <th>REASON</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let subject of student[0].subjects">
-                    <td>{{subject.tittle}}</td>
-                    <td>{{subject.code}}</td>
-                    <td>{{subject.description}}</td>
-                    <td>{{subject.credits}}</td>
-                    <td>{{subject.status}}</td>
+                  <tr *ngFor="let subject of student[0].registerLS">
+                    <td>
+                      <span class="badge {{subject.status}}">{{subject.status}}</span>
+                      {{subject.date}}
+                    </td>
+                    <td>{{subject.reason}}</td>
+                   
                   </tr>
                 </tbody>
               </table>

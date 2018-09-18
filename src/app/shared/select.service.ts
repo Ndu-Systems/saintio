@@ -11,5 +11,8 @@ export class SelectService {
     select(table):Observable<any>{
     return this.http.get<any>(`${this.url}/select.php?table=${table}`);
     }
+    select2(table):Observable<any>{
+    return this.http.get<any>(`${this.url}/select2.php?table=${table}`);
+    }
 
 }

@@ -1,0 +1,13 @@
+.p-init{
+border-color: green;
+}
+.a-init{
+    border-color: red;
+
+}
+.p{
+    border-left: 6px solid green;
+}
+.a{
+    border-left: 6px solid red;
+}

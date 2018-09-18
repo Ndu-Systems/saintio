@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StudentCourseSubjectService } from './student-course-subject.service';
 import { StudentService } from '../student-list/student.service';
+import { ISaintDetails } from '../model/Saint';
 
 
 @Component({
@@ -12,21 +13,22 @@ import { StudentService } from '../student-list/student.service';
   styleUrls: ['./student-course-subject.component.css']
 })
 export class StudentCourseSubjectComponent implements OnInit {
-  student$:Observable<any>;
-  studentID: number;
+  saint$:Observable<ISaintDetails>;
+  userID: number;
   subject: any
   constructor( 
     private studentService:StudentService,
     private selectService: SelectService,
     private studentCourseSubjectService: StudentCourseSubjectService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { 
+    }
 
   ngOnInit() {
-    this.studentID = parseInt(this.route.snapshot.paramMap.get("id"));
-     this.getCourse(this.studentID); // all screen data
+    this.userID = parseInt(this.route.snapshot.paramMap.get("id"));
+     this.getUserInfo(this.userID); // all screen data
   }
-  getCourse(studentId: number){   
-    this.student$ = this.studentCourseSubjectService.select(studentId);
+  getUserInfo(studentId: number){   
+    this.saint$ = this.studentCourseSubjectService.select(studentId);
   }
  
 }
